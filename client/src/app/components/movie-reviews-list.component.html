@@ -1,0 +1,23 @@
+<h1>Search Result</h1>
+<div>
+    <button type="button" [routerLink]="['/']">Back</button>
+</div>
+<div>
+    <table *ngIf="reviews.length >0; else NoResult">
+        <div *ngFor="let review of reviews">
+            <tr><a href="{{review.url}}">{{review.title}}</a> --- {{review.rating}}</tr>
+            <tr>{{review.headline}}</tr>
+            <tr>{{review.summary}}</tr>
+            <tr>
+                <img src="{{review.image}}" height="150" width="150" altimg="https://img.freepik.com/premium-vector/cinema-movie-background-popcorn-filmstrip-clapboard-tickets-movie-time-background_41737-248.jpg">
+                ------ <button type="button" (click)="addComment(review.title)">Comment</button>
+                - ({{review.commentcount}})
+            </tr>
+            <hr>
+        </div>
+    </table>
+</div>
+
+<ng-template #NoResult>
+    <p>Your search produces no result!</p>
+</ng-template>

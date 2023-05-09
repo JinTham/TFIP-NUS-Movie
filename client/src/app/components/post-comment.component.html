@@ -1,0 +1,31 @@
+<h1>Post Comment for {{title}}</h1>
+
+<form [formGroup]="form" (ngSubmit)="addComment()">
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td><input type="text" formControlName="name"></td>
+            <td>
+                <span *ngIf="this.form.get('name')?.invalid && this.form.get('name')?.dirty">Input at least 3 characters</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Rating: </td>
+            <td><input type="number" max="5" min="1" formControlName="rating"></td>
+            <td>
+                <span *ngIf="this.form.get('rating')?.invalid && this.form.get('rating')?.dirty">Pls give a rating</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Comment: </td>
+            <td><textarea cols="30" rows="10" placeholder="type here" formControlName="comment"></textarea></td>
+            <td>
+                <span *ngIf="this.form.get('comment')?.invalid && this.form.get('comment')?.dirty">Pls comment something</span>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="button" [routerLink]="['/results',movieName]">Back</button></td>
+            <td><button type="submit" [disabled]="form.invalid">Post</button></td>
+        </tr>
+    </table>
+</form>
